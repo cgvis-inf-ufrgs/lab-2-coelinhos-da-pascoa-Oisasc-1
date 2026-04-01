@@ -5,7 +5,7 @@
 //    INF01047 Computação Gráfica e Visualização I
 //               Prof. Eduardo Gastal
 //
-//                   LABORATÓRIO 2
+//                   LABORATÓRIO 2 ssss
 //
 
 // Arquivos "headers" padrões de C podem ser incluídos em um
