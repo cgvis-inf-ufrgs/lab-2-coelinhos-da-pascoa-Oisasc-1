@@ -365,7 +365,8 @@ int main(int argc, char* argv[])
         // Note que, no sistema de coordenadas da câmera, os planos near e far
         // estão no sentido negativo! Veja slides 176-204 do documento Aula_09_Projecoes.pdf.
         float nearplane = -0.1f;  // Posição do "near plane"
-        float farplane  = -10.0f; // Posição do "far plane"
+        float farplane  = -1000.0f; // Posição do "far plane"
+        
 
         if (g_UsePerspectiveProjection)
         {
@@ -400,24 +401,69 @@ int main(int argc, char* argv[])
         #define BUNNY  1
         #define PLANE  2
 
-        // Desenhamos o modelo da esfera
-        model = Matrix_Translate(-1.0f,0.0f,0.0f);
-        glUniformMatrix4fv(g_model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-        glUniform1i(g_object_id_uniform, SPHERE);
-        DrawVirtualObject("the_sphere");
+        glm::mat4 gira; //Gira o coelho em torno do proprio eixo
+
+        int coelhos = 15;
+        float dist_ovo = 1.7f; //Distancia do ovo em relacao ao coelho
+        float anima; //é o que o nome diz mesmo
+
+        for (int i = 0; i <= coelhos; i++) //Desenhamos vários coelhos (15)
+        {
+        anima = glfwGetTime() + i;
+//======================= C O E L H O S ==================================================================
+
+        if (i == 3 || i == 7 || i == 11 || i == 15){ //Faz alguns coelhos girar e outros n
+            gira = Matrix_Rotate_X(-2.0f * anima); //GIRA
+        }
+        else{
+            gira = Matrix_Identity(); //NAO 
+        }
 
         // Desenhamos o modelo do coelho
-        model = Matrix_Translate(1.0f,0.0f,0.0f);
+        model = Matrix_Rotate_Y(anima/2.5)* //Faz esse ponto transladado girar em torno da origem
+                    Matrix_Translate(7.0f,2.0f + 2*cos(anima*3.0f),0.0f)* //Afasta o coelho do centro e o faz flutuar verticalmente usando um Cos
+                        gira*
+                        Matrix_Rotate_Y(-90); //Mantem o coelho virado para frente usando o eixo Y
         glUniformMatrix4fv(g_model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
         glUniform1i(g_object_id_uniform, BUNNY);
         DrawVirtualObject("the_bunny");
 
+//======================================== O V O S =====================================================
+
+
+        // Desenhamos o modelo do ovo 01
+        model = Matrix_Rotate_Y(anima/2.4)* //POSICAO COELHO
+                    Matrix_Translate(7.0f,2.0f + 2*cos(anima*3.0f),0.0f)*
+                     Matrix_Rotate_Y(80) * //GIRA OVO
+                        Matrix_Rotate_X(2*anima)*
+                            Matrix_Translate(0.0f,0.0f,dist_ovo)* //Distancia do ovo em relacao ao coelho
+                             Matrix_Scale(0.25f, 0.5f, 0.375f); //estica o eixo Y, depois dimiui o tamanho geral do ovo
+        glUniformMatrix4fv(g_model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(g_object_id_uniform, SPHERE);
+        DrawVirtualObject("the_sphere");
+
+
+
+        // Desenhamos o modelo do ovo 02
+        model = Matrix_Rotate_Y(anima/2.4)* //POSICAO COELHO
+                    Matrix_Translate(7.0f,2.0f + 2*cos(anima*3.0f),0.0f)*
+                     Matrix_Rotate_Y(80) * //GIRA OVO
+                        Matrix_Rotate_X(2*anima)*
+                            Matrix_Translate(0.0f,0.0f,-dist_ovo)* //Distancia do ovo em relacao ao coelho
+                             Matrix_Scale(0.25f, 0.5f, 0.375f); //estica o eixo Y, depois dimiui o tamanho geral do ovo
+        glUniformMatrix4fv(g_model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(g_object_id_uniform, SPHERE);
+        DrawVirtualObject("the_sphere");
+
+        }
+
+        //=========================== C H Ã O ================================================================
         // Desenhamos o plano do chão
-        model = Matrix_Translate(0.0f,-1.0f,0.0f) * Matrix_Scale(4.0f,1.0f,4.0f);
+        model = Matrix_Translate(0.0f,-2.0f,0.0f) * Matrix_Scale(15.0f,1.0f,15.0f);//tamanho plano
         glUniformMatrix4fv(g_model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
         glUniform1i(g_object_id_uniform, PLANE);
         DrawVirtualObject("the_plane");
-
+        //============================+++++++++===============================================================
         // Imprimimos na tela os ângulos de Euler que controlam a rotação do
         // terceiro cubo.
         TextRendering_ShowEulerAngles(window);
