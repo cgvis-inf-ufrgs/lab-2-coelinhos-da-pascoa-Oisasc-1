@@ -62,6 +62,10 @@
     Após fazer o "grosso" fui refinando até ficar o mais próximo posível do exemplo dado como resultado
     esperado, todas as partes foram feitas repetidas vezes até um resultado aceitavel.
 
+    6 - AJUSTE DA CAMERA INICIAL
+
+    Percebi só no final que não tinha ajustado e acabei de fazer isso na variavel g_CameraDistance.
+
 
 `</mark>
 
