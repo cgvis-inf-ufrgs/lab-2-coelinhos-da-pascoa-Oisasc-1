@@ -30,20 +30,60 @@
 > - Novamente, lembre-se que você *não pode utilizar ferramentas
 >   de IA para escrever este relatório*
 
-<mark>`teste mesmo
-só teste`</mark>
+<mark>`
+    1- VEREFICAR O CÓDIGO
+
+    Parar para olhar o código, alterando ele para descobrir como ele funciona,
+    usando funções vistas em aula para ver como elas se comportam.
+
+    2- TAMANHO DOS OBJETOS, FORMATO E POSIÇÃO
+
+    Primeiro defini o tamanho da esfera e seu formato usando Matrix_Scale, logo depois posicionando
+    o coelho e o ovo (esfera) para longe da origem usando Matrix_Translate.
+
+    3- ANIMAÇÃO E TIPOS DE MOVIMENTO
+
+    Tentar fazer com que os objetos se movam usando glfwGetTime() (o atribuindo a variavel 'anima' para
+    utiliza-lo melhor), utilizando Matrix_Translate e Matrix_Rotate depoios de algumas boas tentativas
+    consegui fazer com que girem como deveriam pela orbita da origem, tentei fazer cada coelho e ovos a
+    mão, mas no fim decidi por usar um FOR(que parece muito obvio agora...).
+    
+    4- ROTAÇÃO INDIVIDUAL COELHO E ROTAÇÃO DOS OVOS
+
+    Após conseguir fazer com que os ovos acompanhacem os coelhos utilizei Matrix_Rotate para
+    ajustar a rotação pelo os eixos do coelho.
+
+    Utilizando um if (i == 3 || i == 7 || i == 11 || i == 15) separei um coelho a cada 4 da fila para
+    receber uma multiplicação de matrizes alterando sua rotação, aqueles que não eram selecionados
+    eram multiplicados por uma matriz identidade, assim permanecendo normais.
+
+    5 - REFINAMENTO
+    
+    Após fazer o "grosso" fui refinando até ficar o mais próximo posível do exemplo dado como resultado
+    esperado, todas as partes foram feitas repetidas vezes até um resultado aceitavel.
+
+
+`</mark>
 
 ## Principais dificuldades encontradas durante o desenvolvimento (formato livre)
 
-<mark>`<preencher>`</mark>
+<mark>`
+    Demorei a perceber que as rotações estavam em radianos, e concerteza a ordem de multiplicação
+    de matrizes, muitas vezes eu acabei por trocar e até eu perceber demorava.
+`</mark>
 
 ## Você acha que conseguiu resolver o problema de forma adequada?
 
-<mark>`<preencher>`</mark>
+<mark>`
+    Creio que sim, no entanto tenho certeza que tem como otimiza-lo, o deixando bem melhor. Como
+    também refina-lo o deixando o mais próximo ainda do resultado esperado.
+`</mark>
 
 ## Se você quiser compartilhar mais alguma coisa, coloque aqui:
 
-<mark>`<preencher>`</mark>
+<mark>`
+    Achei a atividade bem completa, reforçou o que vimos em aula.
+`</mark>
 
 ## Se você possui alguma sugestão para o professor sobre esta atividade, coloque aqui:
 
